@@ -6,7 +6,7 @@ import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App authorized={true} />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
