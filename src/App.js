@@ -1,30 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer } from "react";
 import "./App.css";
 
 function App() {
-  const [emotion, setEmotion] = useState("happy :)");
-  const [secondary, setSecondary] = useState("tired *)");
+  const [checked, setChecked] = useState(false);
+  const [newChecked, newToggle] = useReducer(
+    (newChecked) => !newChecked,
+    false
+  );
 
-  useEffect(() => {
-    console.log(`It's ${emotion} around here!!!`);
-  }, [emotion]);
-
-  useEffect(() => {
-    console.log(`It's ${secondary} around here!!!`);
-  }, [secondary]);
+  function toggle() {
+    setChecked((checked) => !checked);
+  }
 
   return (
     <>
-      <h1>
-        Hello!!! I am currently {emotion} and {secondary} !!!
-      </h1>
-      <button onClick={() => setEmotion("happy :)")}>Happy</button>
-      <button onClick={() => setSecondary("tired *)")}>Tired</button>
-      <button onClick={() => setEmotion("frustrated (:")}>Frustrate</button>
-      <button onClick={() => setSecondary("crabby (V)")}>Crabby</button>
-      <button onClick={() => setEmotion("sad ;)")}>Sad</button>
-      <button onClick={() => setSecondary("weak (%)")}>Weak</button>
-      <button onClick={() => setEmotion("surprised ;)")}>Surprised</button>
+      <input type="checkbox" value={checked} onChange={toggle} />
+      {checked ? "checked" : "not checked"}
+      <input type="checkbox" value={newChecked} onChange={newToggle} />
+      {newChecked ? "checked" : "not checked"}
     </>
   );
 }
